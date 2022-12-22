@@ -1,0 +1,50 @@
+python -m venv venv
+npm install -g yarn
+npx create-react-app .
+activate venv
+
+==================================
+yarn start to run the FE code,
+
+create index.py in backend and import FastApi and create app
+
+folders in backend , models,config,schemas,routes
+
+in config folder create db.py
+and in models,routes and schema add users.py
+
+===================================
+create db connection in db.py by sqlalchemy create_engine, MetaData
+engine = create_engine('mysql+pymsql://arsalan:123@localhost:3360/fast_api')
+    => //username:password@localhost:3360/db_name
+
+
+meta = MetaData()
+
+conn = engine.connect()
+========================================
+create db in mysql
+create user 'arsalan'@'localhost' identified by '123';
+
+grant all privileges on *.* to 'arsalan'@'localhost';
+
+create database fast_api;
+
+========================================
+create db table in the models/user.py we imported table, column and sqltype to create a users table,
+passed the meta created in config/db.py and the engine to create the table
+
+=========================================
+in schemas/user.py used the pydantic BaseModel class to create a sort of serializer for the User db created earlier
+=========================================
+for routes we use the ApiRouter of fastapi to first create a user object and use it as a decorator
+over the methods used in routes and called the model user from model/user.py and conn from db.py
+==========================================
+index.py uses the router object created in routes/user.py to be included in the code as
+
+form routes.user import user
+app.included_router(user)
+
+===========================================
+runserver
+uvicorm index:app --reload

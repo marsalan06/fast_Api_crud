@@ -48,4 +48,14 @@ app.included_router(user)
 
 ===========================================
 runserver
-uvicorm index:app --reload
+uvicorn index:app --reload
+===========================================
+for front end we need 2 files in the src folder index.js and app.js
+remove the useless imports in the 2 remaining files, get axios using
+"yarn add axios"
+"yarn add @material-ui/core"
+"yarn add @material-ui/icons"
+
+Go to material ui and copy the app bar code,
+
+
